@@ -3,9 +3,11 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export const App = () => {
   const location = useLocation();
+  //  class="has-navbar-fixed-top"
 
   return (
     <>
+
       <nav
         className="navbar is-light is-fixed-top is-mobile has-shadow"
         data-cy="Nav"
@@ -41,5 +43,3 @@ export const App = () => {
     </>
   );
 };
-
-//  {/* Also requires <html class="has-navbar-fixed-top"> */}

@@ -1,19 +1,21 @@
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { App } from './App';
-import { HomePage } from './components/HomePage/HomePage';
-import { TabsPage } from './components/TabsPage/TabsPage';
+import { RequireAuth } from './components/RequireAuth/RequireAuth';
+import { LoginPage } from './LoginPage/LoginPage';
+import { AuthProvider } from './components/AuthContext/AuthContext';
 
 export const Root = () => (
-  <HashRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<HomePage />} />
-        <Route path="tabs">
-          <Route path=":tabId?" element={<TabsPage />} />
+  <BrowserRouter>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<RequireAuth />}>
+          <Route index element={<App />} />
         </Route>
-        <Route path="*" element={<h1 className="title">Page not found</h1>} />
-        <Route path="home" element={<HomePage />} />
-      </Route>
-    </Routes>
-  </HashRouter>
+        <Route path="login" element={<LoginPage />} />
+      </Routes>
+    </AuthProvider>
+  </BrowserRouter>
 );
+
+// {/* <Provider store={store}> */ }
+// {/* </Provider> */ }
