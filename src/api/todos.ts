@@ -30,7 +30,7 @@ export const authorizeInSystem = (
   return client.post('/account/login', user);
 };
 
-export const createUser = (user: any) => {
+export const createUser = (user: LoginnedUser) => {
   return client.post('/manage/user/create', user);
 };
 
