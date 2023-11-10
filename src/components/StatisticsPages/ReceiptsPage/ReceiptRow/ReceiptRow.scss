@@ -1,0 +1,9 @@
+.receiptRow {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.receiptColumn {
+  box-sizing: border-box;
+  padding-left: 5%;
+}

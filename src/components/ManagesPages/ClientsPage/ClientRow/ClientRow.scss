@@ -1,0 +1,9 @@
+.clientRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.clientColumn {
+  box-sizing: border-box;
+  padding-left: 5%;
+}
