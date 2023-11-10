@@ -13,6 +13,7 @@ type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
 function request<T>(
   url: string,
+  token = '',
   method: RequestMethod = 'GET',
   data: any = null, // we can send any data to the server
 ): Promise<T> {
@@ -23,8 +24,13 @@ function request<T>(
     options.body = JSON.stringify(data);
     options.headers = {
       'Content-Type': 'application/json; charset=UTF-8',
+      Authorization: `Bearer ${token}`,
     };
-  }
+  } else {
+    options.headers = {
+      Authorization: `Bearer ${token}`,
+    };
+  } // token - полученный ранее jwt-токен
 
   // we wait for testing purpose to see loaders
   return wait(100)
@@ -39,8 +45,12 @@ function request<T>(
 }
 
 export const client = {
-  get: <T>(url: string) => request<T>(url),
-  post: <T>(url: string, data: any) => request<T>(url, 'POST', data),
-  patch: <T>(url: string, data: any) => request<T>(url, 'PATCH', data),
-  delete: (url: string) => request(url, 'DELETE'),
+  get: <T>(url: string, token?: string) => request<T>(url, token),
+  post: <T>(
+    url: string, data: any, token?: string,
+  ) => request<T>(url, token, 'POST', data),
+  patch: <T>(
+    url: string, data: any, token?: string,
+  ) => request<T>(url, token, 'PATCH', data),
+  delete: (url: string, token?: string) => request(url, token, 'DELETE'),
 };

@@ -1,0 +1,9 @@
+.productRow {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.productColumn {
+  box-sizing: border-box;
+  padding-left: 5%;
+}
